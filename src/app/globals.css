@@ -1,12 +1,14 @@
+@import "@radix-ui/colors/mauve.css";
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--mauve-12);
+  --foreground: var(--mauve-1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--mauve-1);
+    --foreground: var(--mauve-12);
   }
 }
 
@@ -22,6 +24,23 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.title-wrapper {
+  margin-top: 1em;
+  text-align: center;
+}
+
+.separator-main {
+  background-color: var(--mauve-6);
+}
+.separator-main[data-orientation="horizontal"] {
+  height: 1px;
+  width: 100%;
+}
+.separator-main[data-orientation="vertical"] {
+  height: 100%;
+  width: 1px;
 }
 
 * {
