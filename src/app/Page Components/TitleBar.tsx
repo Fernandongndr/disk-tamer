@@ -1,9 +1,21 @@
 import React from "react";
+import "./TitleBar.scss";
 
-export const TitleBar: React.FC = () => {
+interface TitleBarProps {
+  language: string;
+  setLanguage: (language: string) => void;
+}
+
+export const TitleBar: React.FC<TitleBarProps> = ({ language, setLanguage }) => {
   return (
     <div className="title-wrapper">
-      <h1 className="page-title">Disk Tamer App</h1>
+      <select onChange={(e) => setLanguage(e.target.value)} defaultValue={language}>
+        <option value="en">English</option>
+        <option value="zh">Chinese (Mandarin)</option>
+        <option value="hi">Hindi</option>
+        <option value="es">Spanish</option>
+      </select>
+      <h1>Disk Tamer App</h1>
     </div>
   );
 };

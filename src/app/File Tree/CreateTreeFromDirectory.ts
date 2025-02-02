@@ -25,7 +25,7 @@ async function createTreeFromDirectory(
 ): Promise<{ node: ArboristNode }> {
   if (!level) level = 0;
   const node: ArboristNode = {
-    id: dirHandle.name + level.toString(),
+    id: /* dirHandle.name + level.toString() */ uuidv4(),
     name: dirHandle.name,
     children: [],
     isFile: false,
@@ -44,6 +44,7 @@ async function createTreeFromDirectory(
   for await (const entry of iterator2) {
     if (entry.kind === "file") {
       //logger.debug('Processing file entry');
+      node.children?.push({ id: uuidv4(), name: entry.name, isFile: true, parent: node });
     } else if (entry.kind === "directory") {
       level++;
       const { node: childNode } = await createTreeFromDirectory(entry, existingNode, parentNodeTemp, level);
@@ -51,7 +52,7 @@ async function createTreeFromDirectory(
       childNode.children?.filter((child) => {
         return child.children?.length && child.children?.length > 0;
       });
-      if (childNode.name !== "Images") node.children?.push(childNode);
+      node.children?.push(childNode);
     }
   }
 
@@ -64,9 +65,6 @@ async function createTreeFromDirectory(
     }
   });
 
-  if (node.children && !node.isFile) {
-    node.children.unshift({ id: uuidv4(), name: "New file..", isFile: false, parent: parentNodeTemp });
-  }
   return { node };
 }
 

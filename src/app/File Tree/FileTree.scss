@@ -1,0 +1,17 @@
+.tree-wrapper {
+  width: 30vw;
+  overflow-x: auto;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.tree-content {
+  min-width: max-content;
+  height: 98%;
+}
+
+.tree-root {
+  flex: 1;
+  min-width: 0;
+}

@@ -20,16 +20,17 @@ export const Node = () => {
     // https://symbl.cc/en/unicode/blocks/miscellaneous-symbols-and-pictographs/#subblock-1F5BF <- some symbols here
     let icon: string;
     if (node.data.isFile) {
-      icon = "🗎";
+      //icon = "🗎";
+      icon = "📄";
     } else if (node.children && !node.isOpen) {
       //icon = '🗀'
       icon = "📁";
     } else if (node.children && node.isOpen) {
       icon = "📂";
-    } else if (node.data.name === "New file..") {
-      icon = "✏️";
+      // } else if (node.data.name === "New file..") {
+      //   icon = "✏️";
     } else {
-      icon = "🌐";
+      icon = "📄";
     }
 
     let caret;
@@ -40,9 +41,12 @@ export const Node = () => {
       caret = "▼";
     }
 
-    // Handlers for mouse enter and leave
-    //const handleMouseEnter = () => setIsHovered(true);
-    //const handleMouseLeave = () => setIsHovered(false);
+    // Determine the checkbox state (You need to replace this with actual logic)
+    const isChecked = false; // Full selection
+    const isIndeterminate = false; // Partial selection
+
+    // Choose checkbox state dynamically
+    const checkbox = isIndeterminate ? "◪" : isChecked ? "☑" : "☐";
 
     return (
       <div
@@ -54,7 +58,17 @@ export const Node = () => {
         //onMouseLeave={handleMouseLeave}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
-          {caret} {icon} {node.data.name}
+          {caret}
+          <span
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent node toggle on checkbox click
+              console.log("Checkbox clicked for:", node.data.name); // Replace with actual state update
+            }}
+            style={{ marginRight: "5px" }}
+          >
+            {checkbox}
+          </span>
+          {icon} {node.data.name}
           {node.data.name.endsWith("invalid") && (
             <Tooltip.Provider delayDuration={200}>
               <Tooltip.Root>
