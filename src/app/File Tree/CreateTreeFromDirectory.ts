@@ -8,6 +8,7 @@ export interface ArboristNode {
   children?: ArboristNode[];
   isFile: boolean;
   parent: ArboristNode | null;
+  isChecked: number;
 }
 
 export const emptyNode: ArboristNode = {
@@ -15,6 +16,7 @@ export const emptyNode: ArboristNode = {
   name: "",
   isFile: false,
   parent: null,
+  isChecked: 0,
 };
 
 async function createTreeFromDirectory(
@@ -30,6 +32,7 @@ async function createTreeFromDirectory(
     children: [],
     isFile: false,
     parent: parentNode ? parentNode : null,
+    isChecked: 0,
   };
   const parentNodeTemp = { ...node, children: [] as ArboristNode[] };
 
@@ -44,7 +47,7 @@ async function createTreeFromDirectory(
   for await (const entry of iterator2) {
     if (entry.kind === "file") {
       //logger.debug('Processing file entry');
-      node.children?.push({ id: uuidv4(), name: entry.name, isFile: true, parent: node });
+      node.children?.push({ id: uuidv4(), name: entry.name, isFile: true, parent: node, isChecked: 0 });
     } else if (entry.kind === "directory") {
       level++;
       const { node: childNode } = await createTreeFromDirectory(entry, existingNode, parentNodeTemp, level);
