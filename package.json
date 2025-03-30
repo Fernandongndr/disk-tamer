@@ -16,6 +16,7 @@
     "@radix-ui/react-select": "^2.1.4",
     "@radix-ui/react-separator": "1.1.1",
     "@radix-ui/react-tooltip": "^1.1.6",
+    "@react-aria/button": "3.12.1",
     "@types/react-measure": "^2.0.12",
     "next": "15.1.0",
     "react": "19.0.0",
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "3",
+    "@svgr/webpack": "^8.1.0",
     "@types/node": "20",
     "@types/react": "19",
     "@types/react-dom": "19",

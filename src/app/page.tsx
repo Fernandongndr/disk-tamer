@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { TitleBar } from "./Page Components/TitleBar";
-import { DirectorySelector } from "./File Tree/FileTree";
+import { Body } from "./Page Components/Body";
 import * as Separator from "@radix-ui/react-separator";
 import Measure from "react-measure";
 import { ContentRect } from "./typings";
@@ -34,7 +34,7 @@ export default function Home() {
               height: "85vh",
             }}
           >
-            <DirectorySelector dimensions={dimensions} />
+            <Body dimensions={dimensions} />
           </div>
         )}
       </Measure>

@@ -2,6 +2,18 @@
   display: flex;
   flex-direction: row;
   margin-top: 1em;
-  text-align: center;
-  height: 1.5em;
+  //justify-content: center;
+  justify-content: flex-start; /* ← don't center everything */
+  position: relative; /* ← enable absolute positioning inside */
+  height: 6em;
+}
+
+.select-dropdown {
+  background-color: var(--dropdown-bg, #fff);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 8px;
+  z-index: 1000;
+  //position: absolute !important;
+  transform: translate(2.5em, 2.5em);
 }

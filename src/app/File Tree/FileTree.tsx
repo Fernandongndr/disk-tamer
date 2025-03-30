@@ -32,7 +32,7 @@ export const DirectorySelector: React.FC<DirectorySelectorProps> = ({ dimensions
             <Tree
               className="tree-root"
               width={dimensions?.bounds?.width}
-              height={dimensions?.bounds?.height}
+              height={dimensions?.bounds?.height ?? 500 - 100}
               ref={treeRef}
               data={[data]}
               onActivate={() => {}}
