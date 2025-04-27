@@ -1,0 +1,36 @@
+.styled-button {
+  background-color: var(--button-background);
+  color: var(--button-foreground);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--button-border);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  min-width: 100px;
+  height: 40px;
+
+  &:hover {
+    background-color: var(--button-hover);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.styled-tooltip {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  max-width: 200px;
+  text-align: center;
+  z-index: 9999;
+}

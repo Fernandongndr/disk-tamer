@@ -15,3 +15,10 @@
   flex: 1;
   min-width: 0;
 }
+
+.tree-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}

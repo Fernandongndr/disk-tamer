@@ -1,10 +1,10 @@
 import * as React from "react";
-import * as Tooltip from "@radix-ui/react-tooltip";
 import { OpenMap } from "react-arborist/dist/main/state/open-slice";
 import createTreeFromDirectory, { ArboristNode } from "../File Tree/CreateTreeFromDirectory";
 import { TreeApi } from "react-arborist";
 import { AppContext } from "../Page Components/Body";
 import { ArchiveIcon } from "@radix-ui/react-icons";
+import { TooltipButton } from "../UI Elements/StyledComponents";
 
 interface SelectFolderPickerProps {
   openNodes: OpenMap;
@@ -47,26 +47,14 @@ export const SelectFolderPicker: React.FC<SelectFolderPickerProps> = ({ openNode
   };
 
   return (
-    <Tooltip.Provider delayDuration={200}>
-      <Tooltip.Root>
-        <Tooltip.Trigger asChild>
-          <button
-            id="edit-from-new-folder"
-            className="invisible-button"
-            onClick={() => {
-              handleChangeFolder();
-            }}
-          >
-            <ArchiveIcon />
-          </button>
-        </Tooltip.Trigger>
-        <Tooltip.Portal>
-          <Tooltip.Content className="TooltipContent" sideOffset={5}>
-            Select folder to edit
-          </Tooltip.Content>
-        </Tooltip.Portal>
-      </Tooltip.Root>
-    </Tooltip.Provider>
+    <TooltipButton
+      tooltip="Select folder to edit"
+      onClick={() => {
+        handleChangeFolder();
+      }}
+    >
+      <ArchiveIcon />
+    </TooltipButton>
   );
 };
 

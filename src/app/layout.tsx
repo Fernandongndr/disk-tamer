@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans } from "next/font/google";
+import "./globals.css";
 
 const notoSans = Noto_Sans({
   subsets: ["latin", "latin-ext", "devanagari"],

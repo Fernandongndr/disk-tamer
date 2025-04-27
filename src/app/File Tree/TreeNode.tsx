@@ -76,12 +76,12 @@ export const Node = () => {
         <div style={{ display: "flex", alignItems: "center" }}>
           {caret}
           <span
-            onClick={async (e) => {
+            onClick={(e) => {
               e.stopPropagation();
 
               const shouldSelect = getSelectionStatus(node) !== 1;
 
-              await expandAndSelect(node, shouldSelect);
+              expandAndSelectOptimized(node, shouldSelect);
               updateParentSelectionStatus(node.parent);
             }}
             style={{ marginRight: "5px", cursor: "pointer" }}
@@ -110,22 +110,22 @@ export const Node = () => {
   return TreeNode;
 };
 
-async function expandAndSelect(node: NodeApi<ArboristNode>, selected: boolean) {
-  if (!node.data.isFile && !node.isOpen) {
-    await node.open(); // garante que os filhos sejam montados
-  }
+// function expandAndSelect(node: NodeApi<ArboristNode>, selected: boolean) {
+//   if (!node.data.isFile && !node.isOpen) {
+//     node.open(); // garante que os filhos sejam montados
+//   }
 
-  if (selected) {
-    node.selectMulti();
-  } else {
-    node.deselect();
-  }
+//   if (selected) {
+//     node.selectMulti();
+//   } else {
+//     node.deselect();
+//   }
 
-  // Recursivamente trata os filhos
-  for (const child of node.children ?? []) {
-    await expandAndSelect(child, selected);
-  }
-}
+//   // Recursivamente trata os filhos
+//   for (const child of node.children ?? []) {
+//     expandAndSelect(child, selected);
+//   }
+// }
 
 function getSelectionStatus(node: NodeApi<ArboristNode>): 0 | 1 | 2 {
   const children = node.children ?? [];
@@ -149,4 +149,20 @@ function updateParentSelectionStatus(node: NodeApi<ArboristNode> | null) {
   // only visuals "◪"
 
   updateParentSelectionStatus(node.parent);
+}
+
+function expandAndSelectOptimized(node: NodeApi<ArboristNode>, selected: boolean) {
+  if (!node.data.isFile && !node.isOpen) {
+    node.open();
+  }
+
+  if (selected && !node.isSelected) {
+    node.selectMulti();
+  } else if (!selected && node.isSelected) {
+    node.deselect();
+  }
+
+  for (const child of node.children ?? []) {
+    expandAndSelectOptimized(child, selected);
+  }
 }

@@ -5,6 +5,8 @@ import { OpenMap } from "react-arborist/dist/main/state/open-slice";
 import { Node } from "./TreeNode";
 import { SelectFolderPicker } from "../Page Components/SelectFolderPickers";
 import { ContentRect } from "../typings";
+import { TooltipButton } from "../UI Elements/StyledComponents";
+import { PlusIcon, MinusIcon } from "@radix-ui/react-icons";
 import "./FileTree.scss";
 
 interface DirectorySelectorProps {
@@ -25,7 +27,20 @@ export const DirectorySelector: React.FC<DirectorySelectorProps> = ({ dimensions
 
   return (
     <>
-      <SelectFolderPicker openNodes={openNodes} treeRef={treeRef} setData={setData} />
+      <div className="tree-controls">
+        <SelectFolderPicker openNodes={openNodes} treeRef={treeRef} setData={setData} />
+
+        {treeRef.current && (
+          <>
+            <TooltipButton tooltip="Expand all folders" onClick={() => treeRef.current?.openAll()}>
+              <PlusIcon style={{ marginRight: "0.5em" }} />
+            </TooltipButton>
+            <TooltipButton tooltip="Collapse all folders" onClick={() => treeRef.current?.closeAll()}>
+              <MinusIcon style={{ marginRight: "0.5em" }} />
+            </TooltipButton>
+          </>
+        )}
+      </div>
       {data !== emptyNode && (
         <div className="tree-wrapper">
           <div className="tree-content" style={{ width: dimensions?.bounds?.width }}>
