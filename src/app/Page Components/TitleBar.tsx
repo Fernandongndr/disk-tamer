@@ -4,15 +4,13 @@ import { Root, Trigger, Portal, Content, Item } from "@radix-ui/react-select";
 import LanguageIcon from "../../../public/switch-keyboard-language-svgrepo-com.svg";
 import { TooltipButton } from "../UI Elements/StyledComponents";
 import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
+import { useTranslation } from "../Translations/TranslationsContext";
+import { SupportedLanguage } from "../Translations/Translations";
 
-interface TitleBarProps {
-  language: string;
-  setLanguage: (language: string) => void;
-}
-
-export const TitleBar: React.FC<TitleBarProps> = ({ language, setLanguage }) => {
+export const TitleBar: React.FC = () => {
   const titleBarRef = React.useRef<HTMLDivElement>(null);
   const [theme, setTheme] = React.useState<"theme-light" | "theme-dark">("theme-light");
+  const { language, setLanguage } = useTranslation();
 
   React.useEffect(() => {
     // Apply theme class when it changes
@@ -27,7 +25,7 @@ export const TitleBar: React.FC<TitleBarProps> = ({ language, setLanguage }) => 
     <div className="title-wrapper" ref={titleBarRef}>
       <div style={{ display: "flex", alignItems: "center", gap: "1em" }}>
         {/* Language Switch */}
-        <Root onValueChange={(v) => setLanguage(v)} defaultValue={language}>
+        <Root onValueChange={(v: SupportedLanguage) => setLanguage(v)} defaultValue={language}>
           <Trigger asChild>
             <TooltipButton tooltip="Switch Language">
               <LanguageIcon

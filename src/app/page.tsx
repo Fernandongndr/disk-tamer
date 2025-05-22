@@ -5,39 +5,42 @@ import { Body } from "./Page Components/Body";
 import * as Separator from "@radix-ui/react-separator";
 import Measure from "react-measure";
 import { ContentRect } from "./typings";
+import { TranslationProvider } from "./Translations/TranslationsContext"; // adjust path
 import "./page.scss";
 
 export default function Home() {
   const [dimensions, setDimensions] = useState<ContentRect | undefined>(undefined);
-  const [language, setLanguage] = useState("en");
+  const [language] = useState("en");
 
   return (
-    <div lang={language}>
-      <TitleBar language={language} setLanguage={setLanguage} />
-      <Separator.Root className="separator-main" />
-      <Measure
-        bounds
-        onResize={(contentRect) => {
-          // Update state only if the measured dimensions actually change.
-          const newWidth = contentRect.bounds?.width;
-          const newHeight = contentRect.bounds?.height;
-          if (dimensions?.bounds?.width !== newWidth || dimensions?.bounds?.height !== newHeight) {
-            setDimensions(contentRect);
-          }
-        }}
-      >
-        {({ measureRef }) => (
-          <div
-            ref={measureRef}
-            style={{
-              width: "90vw",
-              height: "85vh",
-            }}
-          >
-            <Body dimensions={dimensions} />
-          </div>
-        )}
-      </Measure>
-    </div>
+    <TranslationProvider>
+      <div lang={language}>
+        <TitleBar />
+        <Separator.Root className="separator-main" />
+        <Measure
+          bounds
+          onResize={(contentRect) => {
+            // Update state only if the measured dimensions actually change.
+            const newWidth = contentRect.bounds?.width;
+            const newHeight = contentRect.bounds?.height;
+            if (dimensions?.bounds?.width !== newWidth || dimensions?.bounds?.height !== newHeight) {
+              setDimensions(contentRect);
+            }
+          }}
+        >
+          {({ measureRef }) => (
+            <div
+              ref={measureRef}
+              style={{
+                width: "90vw",
+                height: "85vh",
+              }}
+            >
+              <Body dimensions={dimensions} />
+            </div>
+          )}
+        </Measure>
+      </div>
+    </TranslationProvider>
   );
 }

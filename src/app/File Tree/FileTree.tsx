@@ -7,6 +7,8 @@ import { SelectFolderPicker } from "../Page Components/SelectFolderPickers";
 import { ContentRect } from "../typings";
 import { TooltipButton } from "../UI Elements/StyledComponents";
 import { PlusIcon, MinusIcon } from "@radix-ui/react-icons";
+import { translate } from "../Translations/Translations";
+import { useTranslation } from "../Translations/TranslationsContext";
 import "./FileTree.scss";
 
 interface DirectorySelectorProps {
@@ -18,6 +20,7 @@ export const DirectorySelector: React.FC<DirectorySelectorProps> = ({ dimensions
   const treeRef = useRef<TreeApi<ArboristNode> | null>(null);
   const [data, setData] = useState<ArboristNode>(emptyNode);
   const [openNodes, setOpenNodes] = useState<OpenMap>({});
+  const { language } = useTranslation();
 
   // Stores expanded states in the tree
   const handleToggle = (id: string) => {
@@ -32,7 +35,10 @@ export const DirectorySelector: React.FC<DirectorySelectorProps> = ({ dimensions
 
         {treeRef.current && (
           <>
-            <TooltipButton tooltip="Expand all folders" onClick={() => treeRef.current?.openAll()}>
+            <TooltipButton
+              tooltip={translate("Expand all folders", language)}
+              onClick={() => treeRef.current?.openAll()}
+            >
               <PlusIcon style={{ marginRight: "0.5em" }} />
             </TooltipButton>
             <TooltipButton tooltip="Collapse all folders" onClick={() => treeRef.current?.closeAll()}>
