@@ -27,7 +27,7 @@ export const DirectorySelector: React.FC<DirectorySelectorProps> = ({ dimensions
     const newOpenMap = { ...openNodes, [id]: !openNodes[id] };
     setOpenNodes(newOpenMap);
   };
-
+  console.log("dimensions:", dimensions);
   return (
     <>
       <div className="tree-controls">
@@ -48,34 +48,32 @@ export const DirectorySelector: React.FC<DirectorySelectorProps> = ({ dimensions
         )}
       </div>
       {data !== emptyNode && (
-        <div className="tree-wrapper">
-          <div className="tree-content" style={{ width: dimensions?.bounds?.width }}>
-            <Tree
-              className="tree-root"
-              width={dimensions?.bounds?.width}
-              height={dimensions?.bounds?.height ?? 500 - 100}
-              ref={treeRef}
-              data={[data]}
-              onActivate={() => {}}
-              onToggle={handleToggle}
-              initialOpenState={openNodes}
-              openByDefault={false}
-              //searchTerm={searchTerm}
-              // searchMatch={(node, term) => {
-              //   // Matches the provided string
-              //   if (node.data.name.toLowerCase().includes(term.toLowerCase())) {
-              //     return true;
-              //   }
-              //   // Matches language codes of parent document
-              //   if (node.parent?.data?.name?.toLowerCase().includes(term.toLowerCase())) {
-              //     return true;
-              //   }
-              //   return false;
-              // }}
-            >
-              {Node()}
-            </Tree>
-          </div>
+        <div className="tree-content" style={{ width: dimensions?.bounds?.width }}>
+          <Tree
+            className="tree-root"
+            width={dimensions?.bounds?.width}
+            height={dimensions?.bounds?.height ?? 500 - 100}
+            ref={treeRef}
+            data={[data]}
+            onActivate={() => {}}
+            onToggle={handleToggle}
+            initialOpenState={openNodes}
+            openByDefault={false}
+            //searchTerm={searchTerm}
+            // searchMatch={(node, term) => {
+            //   // Matches the provided string
+            //   if (node.data.name.toLowerCase().includes(term.toLowerCase())) {
+            //     return true;
+            //   }
+            //   // Matches language codes of parent document
+            //   if (node.parent?.data?.name?.toLowerCase().includes(term.toLowerCase())) {
+            //     return true;
+            //   }
+            //   return false;
+            // }}
+          >
+            {Node()}
+          </Tree>
         </div>
       )}
     </>

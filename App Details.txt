@@ -1,0 +1,60 @@
+Disk Tamer App – Project Context for AI
+=======================================
+
+Overview:
+----------
+Disk Tamer is a Next.js single-page application (SPA) designed to provide smart, user-friendly disk folder management directly in the browser. The app leverages the browser's File System Access API (planned, not yet implemented) to enable advanced file operations such as renaming, moving, and deleting files/folders. The UI is built with React and Radix UI components, and the project is structured for extensibility, including future AI-powered features.
+
+Key Features & Architecture:
+----------------------------
+1. **File Tree System:**
+   - The core UI is a file tree, rendered using `react-arborist`, which displays the user's folder structure after they select a directory.
+   - Each node in the file tree is an `ArboristNode` object, containing:
+     - `id`: Unique identifier (UUID)
+     - `name`: File or folder name
+     - `isFile`: Boolean flag
+     - `parent`: Reference to parent node
+     - `children`: Array of child nodes (for folders)
+     - `isChecked`: Selection state (for future batch operations)
+   - The file tree currently does not perform real file operations, but is designed to track which files/folders would be affected by user actions.
+
+2. **Directory Selection:**
+   - Users select a folder using the browser's directory picker (`window.showDirectoryPicker`).
+   - The selected directory is parsed recursively into the ArboristNode tree structure.
+   - The app context (`AppContext`) stores the current directory handle and provides it to child components.
+
+3. **Translations System:**
+   - Internationalization is handled via a custom context (`TranslationsContext`).
+   - Supported languages: English, Portuguese (Brazil), Spanish, Chinese, Hindi.
+   - Translations are defined in a central file as a mapping from keys (e.g., "Select folder to edit") to language-specific strings.
+   - The `useTranslation` hook provides access to the current language and a setter, allowing UI elements to update language dynamically.
+
+4. **Custom UI Elements:**
+   - The app uses Radix UI for accessible, themeable components (e.g., Select, Tooltip, Icons).
+   - `TooltipButton` and `StyledButton` are custom React components that wrap buttons with consistent styling and tooltips.
+   - Theme switching (light/dark) is implemented in the TitleBar and updates CSS variables at the root level.
+
+5. **Component Structure:**
+   - `TitleBar`: Contains the app title, language switcher, and theme toggle.
+   - `Body`: Provides the main content area, including the file tree and directory selection.
+   - `DirectorySelector`: Handles folder selection and displays the file tree.
+   - `SelectFolderPicker`: UI for picking a folder and updating the file tree.
+   - `TreeNode`: (WIP) Custom rendering logic for file tree nodes, with planned support for selection and batch actions.
+
+6. **Styling:**
+   - Uses SCSS modules and CSS variables for theming and layout.
+   - Responsive design with flexbox and viewport-relative units.
+
+7. **Planned/Upcoming Features:**
+   - Actual file operations (rename, move, delete) using the File System Access API.
+   - Template-based file creation (e.g., generate documents from templates and CSVs).
+   - AI-powered features, such as extracting data from images to auto-fill templates.
+
+How to Use This Context:
+------------------------
+- This file is intended for AI assistants (like GitHub Copilot) to understand the app's structure, intent, and current capabilities.
+- The file tree is the main UI, and all file/folder operations will be routed through the ArboristNode structure.
+- Translations and theming are handled via React context and custom hooks/components.
+- The app is designed for extensibility, with clear separation of concerns and a focus on user experience.
+
+For more details, see the source files referenced above.
