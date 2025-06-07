@@ -1,19 +1,25 @@
 .tree-wrapper {
   width: 30vw;
-  overflow-x: auto;
-  overflow-y: auto;
+  overflow: hidden; // Prevent wrapper from causing overflow
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .tree-content {
+  flex: 1; // Take remaining space after controls
   min-width: max-content;
-  height: 98%;
+  overflow-x: auto;
+  overflow-y: auto;
+  width: 100%;
+  min-height: 0; // Important for flex child with overflow
 }
 
 .tree-root {
-  flex: 1;
-  min-width: 0;
+  min-width: max-content;
+  white-space: nowrap;
+  width: max-content; // Allow tree to expand to content width
+  height: 100%;
 }
 
 .tree-controls {
@@ -21,4 +27,19 @@
   align-items: center;
   gap: 12px;
   margin-bottom: 12px;
+  flex-shrink: 0; // Prevent controls from shrinking
+  padding: 8px 0; // Add some padding
+}
+
+// Ensure tree nodes don't wrap text
+.filetree-node-container {
+  white-space: nowrap;
+  overflow: visible;
+  min-width: max-content;
+
+  // Ensure the node content doesn't wrap
+  > div {
+    white-space: nowrap;
+    overflow: visible;
+  }
 }

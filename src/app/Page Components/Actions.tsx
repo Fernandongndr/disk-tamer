@@ -22,7 +22,7 @@ export const Actions: React.FC<ActionsProps> = () => {
           {translate("Start", language)}
         </StyledButton>
       </div>
-      
+
       <div className="actions-cards">
         {/* TODO: Action cards will be added here */}
         <div className="placeholder-text">

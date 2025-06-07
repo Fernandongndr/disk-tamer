@@ -28,11 +28,11 @@
   padding: 8px 16px;
   border-radius: 6px;
   font-weight: 500;
-  
+
   &:hover {
     background-color: var(--primary-color-hover, #005a9e);
   }
-  
+
   &:disabled {
     background-color: var(--disabled-color, #ccc);
     cursor: not-allowed;

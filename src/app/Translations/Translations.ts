@@ -47,7 +47,7 @@ export const translations: Record<TranslationKey, Record<SupportedLanguage, stri
     zh: "文件操作",
     hi: "फ़ाइल संचालन",
   },
-  "Start": {
+  Start: {
     en: "Start",
     "pt-BR": "Iniciar",
     es: "Iniciar",

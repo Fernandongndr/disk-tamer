@@ -14,12 +14,13 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  
+  height: 100%; // Ensure full height
+
   // Add resize handle styling for future resizing functionality
   position: relative;
-  
+
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     right: -2px;
@@ -27,10 +28,16 @@
     height: 100%;
     cursor: col-resize;
     background: transparent;
-    
+
     &:hover {
       background-color: var(--primary-color, #007acc);
     }
+  }
+
+  // Ensure the tree content can scroll horizontally within the panel
+  .tree-wrapper {
+    flex: 1;
+    min-height: 0;
   }
 }
 
@@ -49,7 +56,7 @@
     width: 350px;
     min-width: 280px;
   }
-  
+
   .actions-panel {
     min-width: 350px;
   }
@@ -60,7 +67,7 @@
     width: 300px;
     min-width: 250px;
   }
-  
+
   .actions-panel {
     min-width: 300px;
   }

@@ -27,9 +27,8 @@ export const DirectorySelector: React.FC<DirectorySelectorProps> = ({ dimensions
     const newOpenMap = { ...openNodes, [id]: !openNodes[id] };
     setOpenNodes(newOpenMap);
   };
-  console.log("dimensions:", dimensions);
-  return (
-    <>
+  console.log("dimensions:", dimensions);  return (
+    <div className="tree-wrapper">
       <div className="tree-controls">
         <SelectFolderPicker openNodes={openNodes} treeRef={treeRef} setData={setData} />
 
@@ -47,12 +46,11 @@ export const DirectorySelector: React.FC<DirectorySelectorProps> = ({ dimensions
           </>
         )}
       </div>
-      {data !== emptyNode && (
-        <div className="tree-content" style={{ width: dimensions?.bounds?.width }}>
+      {data !== emptyNode && (        <div className="tree-content">
           <Tree
             className="tree-root"
-            width={dimensions?.bounds?.width}
-            height={dimensions?.bounds?.height ?? 500 - 100}
+            width={dimensions?.bounds?.width ?? 400}
+            height={dimensions?.bounds?.height ? dimensions.bounds.height - 80 : 420} // Subtract space for controls
             ref={treeRef}
             data={[data]}
             onActivate={() => {}}
@@ -76,6 +74,6 @@ export const DirectorySelector: React.FC<DirectorySelectorProps> = ({ dimensions
           </Tree>
         </div>
       )}
-    </>
+    </div>
   );
 };
