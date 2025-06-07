@@ -1,0 +1,67 @@
+.body-layout {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.directory-panel {
+  width: 400px;
+  min-width: 300px;
+  max-width: 600px;
+  border-right: 1px solid var(--border-color, #e0e0e0);
+  background-color: var(--background-primary, #ffffff);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  
+  // Add resize handle styling for future resizing functionality
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -2px;
+    width: 4px;
+    height: 100%;
+    cursor: col-resize;
+    background: transparent;
+    
+    &:hover {
+      background-color: var(--primary-color, #007acc);
+    }
+  }
+}
+
+.actions-panel {
+  flex: 1;
+  min-width: 400px;
+  background-color: var(--background-primary, #ffffff);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+// Responsive adjustments for smaller screens (though not primary focus)
+@media (max-width: 1200px) {
+  .directory-panel {
+    width: 350px;
+    min-width: 280px;
+  }
+  
+  .actions-panel {
+    min-width: 350px;
+  }
+}
+
+@media (max-width: 900px) {
+  .directory-panel {
+    width: 300px;
+    min-width: 250px;
+  }
+  
+  .actions-panel {
+    min-width: 300px;
+  }
+}
