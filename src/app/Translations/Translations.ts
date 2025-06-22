@@ -9,7 +9,9 @@ export type TranslationKey =
   | "Collapse all folders"
   | "File Operations"
   | "Start"
-  | "Select files from the directory tree to configure operations";
+  | "Select files from the directory tree to configure operations"
+  | "Switch to Dark Mode"
+  | "Switch to Light Mode";
 
 export const translations: Record<TranslationKey, Record<SupportedLanguage, string>> = {
   "Select folder to edit": {
@@ -60,6 +62,20 @@ export const translations: Record<TranslationKey, Record<SupportedLanguage, stri
     es: "Seleccione archivos del árbol de directorios para configurar operaciones",
     zh: "从目录树中选择文件以配置操作",
     hi: "ऑपरेशन कॉन्फ़िगर करने के लिए निर्देशिका ट्री से फ़ाइलें चुनें",
+  },
+  "Switch to Dark Mode": {
+    en: "Switch to Dark Mode",
+    "pt-BR": "Mudar para o modo escuro",
+    es: "Cambiar a modo oscuro",
+    zh: "切换到深色模式",
+    hi: "डार्क मोड पर स्विच करें",
+  },
+  "Switch to Light Mode": {
+    en: "Switch to Light Mode",
+    "pt-BR": "Mudar para o modo claro",
+    es: "Cambiar a modo claro",
+    zh: "切换到浅色模式",
+    hi: "लाइट मोड पर स्विच करें",
   },
   // Add more phrases as needed
 };

@@ -40,7 +40,10 @@ export const DirectorySelector: React.FC<DirectorySelectorProps> = ({ dimensions
             >
               <PlusIcon style={{ marginRight: "0.5em" }} />
             </TooltipButton>
-            <TooltipButton tooltip="Collapse all folders" onClick={() => treeRef.current?.closeAll()}>
+            <TooltipButton
+              tooltip={translate("Collapse all folders", language)}
+              onClick={() => treeRef.current?.closeAll()}
+            >
               <MinusIcon style={{ marginRight: "0.5em" }} />
             </TooltipButton>
           </>

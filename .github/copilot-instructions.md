@@ -87,6 +87,7 @@ This file provides instructions for AI coding assistants (like GitHub Copilot) t
 - Document new components and utilities with clear comments.
 - Request permission when editing package files or major configuration files.
 - Mind light/dark mode compatibility when adding new styles.
+- When adding text to the UI, use the `useTranslation` hook and add the translations to Translations.ts.
 
 ---
 

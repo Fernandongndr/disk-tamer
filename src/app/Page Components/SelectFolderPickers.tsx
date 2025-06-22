@@ -5,6 +5,8 @@ import { TreeApi } from "react-arborist";
 import { AppContext } from "../Page Components/Body";
 import { ArchiveIcon } from "@radix-ui/react-icons";
 import { TooltipButton } from "../UI Elements/StyledComponents";
+import { useTranslation } from "../Translations/TranslationsContext";
+import { translate } from "../Translations/Translations";
 
 interface SelectFolderPickerProps {
   openNodes: OpenMap;
@@ -15,6 +17,7 @@ interface SelectFolderPickerProps {
 export const SelectFolderPicker: React.FC<SelectFolderPickerProps> = ({ openNodes, treeRef, setData }) => {
   const [folders, setFolders] = React.useState<Array<{ folderName: string; handle: FileSystemDirectoryHandle }>>([]);
   const { dirHandle, setDirHandle } = React.useContext(AppContext);
+  const { language } = useTranslation();
 
   // Closes all nodes and updates it's map to reflect the changes
   const closeAllNodes = () => {
@@ -52,7 +55,7 @@ export const SelectFolderPicker: React.FC<SelectFolderPickerProps> = ({ openNode
 
   return (
     <TooltipButton
-      tooltip="Select folder to edit"
+      tooltip={translate("Select folder to edit", language)}
       onClick={() => {
         handleChangeFolder();
       }}

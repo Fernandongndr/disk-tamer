@@ -6,6 +6,7 @@ import { TooltipButton } from "../UI Elements/StyledComponents";
 import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
 import { useTranslation } from "../Translations/TranslationsContext";
 import { SupportedLanguage } from "../Translations/Translations";
+import { translate } from "../Translations/Translations";
 
 export const TitleBar: React.FC = () => {
   const titleBarRef = React.useRef<HTMLDivElement>(null);
@@ -27,7 +28,7 @@ export const TitleBar: React.FC = () => {
         {/* Language Switch */}
         <Root onValueChange={(v: SupportedLanguage) => setLanguage(v)} defaultValue={language}>
           <Trigger asChild>
-            <TooltipButton tooltip="Switch Language">
+            <TooltipButton tooltip={translate("Switch Language", language)}>
               <LanguageIcon
                 width={"2em"}
                 height={"2em"}
@@ -59,7 +60,7 @@ export const TitleBar: React.FC = () => {
 
         {/* Theme Toggle Button */}
         <TooltipButton
-          tooltip={theme === "theme-light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
+          tooltip={translate(theme === "theme-light" ? "Switch to Dark Mode" : "Switch to Light Mode", language)}
           onClick={toggleTheme}
         >
           {theme === "theme-light" ? (
