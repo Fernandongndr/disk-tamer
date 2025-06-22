@@ -29,6 +29,13 @@
   margin-bottom: 12px;
   flex-shrink: 0; // Prevent controls from shrinking
   padding: 8px 0; // Add some padding
+
+  // Set icon color for file tree control buttons and icons to use --icon-color, ensuring visibility in all themes.
+  button,
+  [role="button"],
+  svg {
+    color: var(--icon-color) !important;
+  }
 }
 
 // Ensure tree nodes don't wrap text

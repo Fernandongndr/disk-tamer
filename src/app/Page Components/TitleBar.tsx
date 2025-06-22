@@ -31,8 +31,8 @@ export const TitleBar: React.FC = () => {
               <LanguageIcon
                 width={"2em"}
                 height={"2em"}
-                style={{ backgroundColor: "white", borderRadius: "50%" }}
-                fill="black"
+                className="icon-theme-adaptive"
+                style={{borderRadius: "50%" }}
               />
             </TooltipButton>
           </Trigger>
@@ -63,9 +63,9 @@ export const TitleBar: React.FC = () => {
           onClick={toggleTheme}
         >
           {theme === "theme-light" ? (
-            <MoonIcon width={"2em"} height={"2em"} />
+            <MoonIcon width={"2em"} height={"2em"} className="icon-theme-adaptive" />
           ) : (
-            <SunIcon width={"2em"} height={"2em"} />
+            <SunIcon width={"2em"} height={"2em"} className="icon-theme-adaptive" />
           )}
         </TooltipButton>
       </div>

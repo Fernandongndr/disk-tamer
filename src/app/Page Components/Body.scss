@@ -3,6 +3,11 @@
   height: 100%;
   width: 100%;
   overflow: hidden;
+
+  /* Ensure all content inside .body-layout uses theme variables for background and color */
+  background: var(--background);
+  color: var(--foreground);
+  transition: background 0.5s, color 0.5s;
 }
 
 .directory-panel {
@@ -10,7 +15,7 @@
   min-width: 300px;
   max-width: 600px;
   border-right: 1px solid var(--border-color, #e0e0e0);
-  background-color: var(--background-primary, #ffffff);
+  // background-color: var(--background-primary, #ffffff);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -44,7 +49,7 @@
 .actions-panel {
   flex: 1;
   min-width: 400px;
-  background-color: var(--background-primary, #ffffff);
+  // background-color: var(--background-primary, #ffffff);
   display: flex;
   flex-direction: column;
   overflow: hidden;

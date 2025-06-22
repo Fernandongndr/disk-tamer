@@ -42,7 +42,11 @@ export const SelectFolderPicker: React.FC<SelectFolderPickerProps> = ({ openNode
         setFolders([...folders, { folderName: directoryHandle.name, handle: directoryHandle }]);
       }
     } catch (error) {
+      if (error instanceof Error && error.name === "AbortError") {
+        console.warn("Folder selection was aborted by the user.");
+      } else {
       console.error("An error occurred during folder selection: ", error);
+      }
     }
   };
 

@@ -22,6 +22,10 @@
   font-weight: 600;
 }
 
+.actions-header button, .actions-header [role="button"], .actions-header svg {
+  color: var(--icon-color) !important;
+}
+
 .start-button {
   background-color: var(--primary-color, #007acc);
   color: white;

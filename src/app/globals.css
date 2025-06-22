@@ -3,7 +3,8 @@
 @import "@radix-ui/colors/gray.css";
 
 /* Default Theme (acts like Light) */
-:root {
+:root,
+html {
   --background: var(--mauve-1);
   --foreground: var(--mauve-12);
 
@@ -17,14 +18,17 @@
   --button-secondary-hover-background: var(--gray-4);
 
   --hover-highlight: var(--mauve-4);
+  --icon-color: var(--mauve-12); /* New: icon color for light */
+  --dropdown-bg: var(--slate-3);
 }
 
 /* Dark Theme */
-.theme-dark {
+html.theme-dark,
+:root.theme-dark {
   --background: var(--mauve-12);
   --foreground: var(--mauve-1);
 
-  --button-background: var(--slate-6);
+  --button-background: var(--slate-10); /* Use a much darker gray for better contrast in dark mode */
   --button-foreground: var(--mauve-1);
   --button-hover: var(--slate-5);
   --button-border: var(--slate-8);
@@ -34,10 +38,13 @@
   --button-secondary-hover-background: var(--gray-7);
 
   --hover-highlight: var(--mauve-6);
+  --icon-color: var(--mauve-1); /* New: icon color for dark */
+  --dropdown-bg: var(--slate-12);
 }
 
 /* Funky Theme */
-.theme-funky {
+html.theme-funky,
+:root.theme-funky {
   --background: hotpink;
   --foreground: black;
 
@@ -51,6 +58,8 @@
   --button-secondary-hover-background: green;
 
   --hover-highlight: lightgreen;
+  --icon-color: black;
+  --dropdown-bg: yellow;
 }
 
 /* --- General reset --- */
@@ -138,4 +147,26 @@ a {
 
 html {
   transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.icon-theme-adaptive {
+  color: var(--icon-color) !important;
+  fill: var(--icon-color) !important;
+  transition: color 0.2s, fill 0.2s;
+}
+
+/* Dropdown styles - theme aware */
+.select-dropdown {
+  background-color: var(--dropdown-bg);
+  color: var(--foreground);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 8px;
+  z-index: 1000;
+  transform: translate(2.5em, 2.5em);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.select-dropdown button, .select-dropdown [role="button"], .select-dropdown svg {
+  color: var(--icon-color) !important;
 }

@@ -1,9 +1,10 @@
 .styled-button {
-  background-color: var(--button-background);
-  color: var(--button-foreground);
+  /* Force all styled buttons to use the correct background and border for the current theme */
+  background-color: var(--button-background) !important;
+  color: var(--button-foreground) !important;
   padding: 6px 12px;
   border-radius: 8px;
-  border: 1px solid var(--button-border);
+  border: 1px solid var(--button-border) !important;
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
@@ -22,6 +23,27 @@
     opacity: 0.6;
     cursor: not-allowed;
   }
+
+  svg, [role="img"] {
+    color: var(--icon-color) !important;
+    fill: var(--icon-color) !important;
+  }
+
+  /* Fix: Use secondary button variables for clear/transparent buttons */
+  &.clear, &.secondary, &[data-variant="clear"], &[data-variant="secondary"] {
+    background-color: var(--button-secondary-background);
+    border: 1px solid var(--button-secondary-border);
+    color: var(--icon-color);
+    
+    &:hover {
+      background-color: var(--button-secondary-hover-background);
+    }
+    
+    svg, [role="img"] {
+      color: var(--icon-color) !important;
+      fill: var(--icon-color) !important;
+    }
+  }
 }
 
 .styled-tooltip {
@@ -33,4 +55,19 @@
   max-width: 200px;
   text-align: center;
   z-index: 9999;
+}
+
+.styled-button--secondary {
+  background-color: var(--button-secondary-background);
+  border: 1px solid var(--button-secondary-border);
+  color: var(--icon-color);
+
+  &:hover {
+    background-color: var(--button-secondary-hover-background);
+  }
+
+  svg, [role="img"] {
+    color: var(--icon-color) !important;
+    fill: var(--icon-color) !important;
+  }
 }
